@@ -9,22 +9,34 @@ class BarChartWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 300,
-      height: 101,
+      width: 349,
+      height: 150,
       child: DChartBar(
         data: const [
           {
             'id': 'Bar',
             'data': [
-              {'domain': '2020', 'measure': 3},
-              {'domain': '2021', 'measure': 4},
-              {'domain': '2022', 'measure': 6},
-              {'domain': '2023', 'measure': 0.3},
+              {'domain': '% Call', 'measure': 3},
+              {'domain': '% Put', 'measure': 4},
+              {'domain': 'Call', 'measure': 6},
+              {'domain': 'Put', 'measure': 2.3},
             ]
           }
         ],
-        barColor: (barData, index, id) => Colors.green,
+        barColor: (barData, index, id) => index == 0
+            ? Colors.blue
+            : index == 1
+                ? Colors.green
+                : index == 2
+                    ? Colors.red
+                    : Colors.amber,
         verticalDirection: false,
+        yAxisTitle: "Metrics",
+        showBarValue: true,
+        domainLabelColor: const Color(0xFF999999),
+        measureAxisTitleInPadding: 14,
+        measureAxisTitleColor: const Color(0xFF999999),
+        measureLabelColor: const Color(0xFF999999),
       ),
     );
   }

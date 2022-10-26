@@ -3,7 +3,15 @@
 import 'package:flutter/material.dart';
 
 class SelectWidget extends StatelessWidget {
-  const SelectWidget({super.key});
+  const SelectWidget(
+      {super.key,
+      this.symbolController,
+      this.profitController,
+      this.timeframeController});
+
+  final dynamic symbolController;
+  final dynamic profitController;
+  final dynamic timeframeController;
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +36,7 @@ class SelectWidget extends StatelessWidget {
                     child: SizedBox(
                       height: 30,
                       child: TextFormField(
+                        controller: symbolController,
                         style: const TextStyle(
                             color: Color(0xFF999999),
                             fontWeight: FontWeight.w600),
@@ -57,6 +66,7 @@ class SelectWidget extends StatelessWidget {
                     child: SizedBox(
                       height: 30,
                       child: TextFormField(
+                        controller: profitController,
                         style: const TextStyle(
                             color: Color(0xFF999999),
                             fontWeight: FontWeight.w600),
@@ -86,6 +96,7 @@ class SelectWidget extends StatelessWidget {
             child: SizedBox(
               height: 30,
               child: TextFormField(
+                controller: timeframeController,
                 style: const TextStyle(
                     color: Color(0xFF999999), fontWeight: FontWeight.w600),
                 decoration: const InputDecoration(
