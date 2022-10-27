@@ -1,4 +1,4 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, avoid_print
 import 'package:flutter/material.dart';
 import 'package:signal_analyst/widgets/AppBarWidget.dart';
 import 'package:signal_analyst/widgets/BarChartWidget.dart';
@@ -15,7 +15,11 @@ class AnalisysPage extends StatelessWidget {
     return Scaffold(
         appBar: const PreferredSize(
             preferredSize: Size.fromHeight(50),
-            child: AppBarWidget(title: "Signal Analyst")),
+            child: AppBarWidget(
+              title: "Analysis",
+              link1: '/',
+              link2: '/signal-list',
+            )),
         body: Padding(
           padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
           child: Column(
@@ -73,7 +77,7 @@ class AnalisysPage extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(top: 20.0),
                         child: SizedBox(
-                          height: 120,
+                          height: 145,
                           width: 349,
                           child: ListView.builder(
                             itemCount: 5,
@@ -105,25 +109,24 @@ class AnalisysPage extends StatelessWidget {
                     children: <Widget>[
                       SizedBox(
                         width: 365,
-                        height: 400,
+                        height: 460,
                         child: ListView.builder(
-                            itemCount: 15,
+                            itemCount: 12,
                             itemBuilder: (BuildContext context, int index) {
                               if (index % 2 == 0) {
                                 return const CardListItemWidget(
-                                  signalIcon: FontAwesomeIcons.circleChevronUp,
-                                  signalIconColor: Color(0xFF1DBE0F),
-                                  bgColor: Color(0xFFBEBBA2),
-                                  fgColor: Colors.white,
-                                );
+                                    signalIcon:
+                                        FontAwesomeIcons.circleChevronUp,
+                                    signalIconColor: Color(0xFF1DBE0F),
+                                    bgColor: Color(0xFFBEBBA2),
+                                    fgColor: Colors.white);
                               } else {
                                 return const CardListItemWidget(
-                                  signalIcon:
-                                      FontAwesomeIcons.circleChevronDown,
-                                  signalIconColor: Color(0xFFC34848),
-                                  bgColor: Color(0xFFEFEFEF),
-                                  fgColor: Color(0xFFBEBBA2),
-                                );
+                                    signalIcon:
+                                        FontAwesomeIcons.circleChevronDown,
+                                    signalIconColor: Color(0xFFC34848),
+                                    bgColor: Color(0xFFEFEFEF),
+                                    fgColor: Color(0xFFBEBBA2));
                               }
                             }),
                       )

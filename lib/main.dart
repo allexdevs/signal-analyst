@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:signal_analyst/pages/AnalysisPage.dart';
+import 'package:signal_analyst/pages/ListPage.dart';
 import 'package:window_manager/window_manager.dart';
 
 void main() async {
@@ -7,9 +8,9 @@ void main() async {
   await windowManager.ensureInitialized();
 
   WindowOptions windowOptions = const WindowOptions(
-      size: Size(800, 600),
-      minimumSize: Size(800, 600),
-      maximumSize: Size(800, 600),
+      size: Size(800, 620),
+      minimumSize: Size(800, 620),
+      maximumSize: Size(800, 620),
       center: true,
       backgroundColor: Colors.transparent,
       skipTaskbar: false,
@@ -35,7 +36,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      routes: {'/': (context) => const AnalisysPage()},
+      routes: {
+        '/': (context) => const AnalisysPage(),
+        '/signal-list': (context) => const ListPage()
+      },
     );
   }
 }

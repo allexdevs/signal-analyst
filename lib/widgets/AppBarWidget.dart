@@ -19,13 +19,17 @@ class AppBarWidget extends StatelessWidget {
         backgroundColor: const Color(0xFF3B5A68),
         actions: <Widget>[
           IconButton(
-              onPressed: link1,
+              onPressed: () {
+                Navigator.popAndPushNamed(context, link1);
+              },
               icon: const Icon(
                 Icons.bar_chart_rounded,
                 color: Colors.white,
               )),
           IconButton(
-              onPressed: link2,
+              onPressed: () {
+                Navigator.popAndPushNamed(context, link2);
+              },
               icon: const Icon(
                 Icons.list,
                 color: Colors.white,
@@ -33,7 +37,9 @@ class AppBarWidget extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(right: 20),
             child: IconButton(
-                onPressed: link3,
+                onPressed: () {
+                  Navigator.popAndPushNamed(context, link3);
+                },
                 icon: const Icon(
                   Icons.settings,
                   color: Colors.white,
