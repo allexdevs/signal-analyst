@@ -16,24 +16,28 @@ class BarChartWidget extends StatelessWidget {
           {
             'id': 'Bar',
             'data': [
-              {'domain': '% Call', 'measure': 3},
-              {'domain': '% Put', 'measure': 4},
-              {'domain': 'Call', 'measure': 6},
-              {'domain': 'Put', 'measure': 2.3},
+              {'domain': '% Call', 'measure': 69},
+              {'domain': '% Put', 'measure': 30},
+              {'domain': 'Call', 'measure': 9},
+              {'domain': 'Put', 'measure': 4},
             ]
-          }
+          },
         ],
         barColor: (barData, index, id) => index == 0
             ? Colors.blue
             : index == 1
-                ? Colors.green
+                ? Colors.amber
                 : index == 2
-                    ? Colors.red
-                    : Colors.amber,
+                    ? Colors.green
+                    : Colors.red,
         verticalDirection: false,
+        measureMax: 100,
+        axisLineTick: 1,
+        animate: true,
         yAxisTitle: "Metrics",
-        showBarValue: true,
         domainLabelColor: const Color(0xFF999999),
+        measureLabelFontSize: 12,
+        domainLabelPaddingToAxisLine: 6,
         measureAxisTitleInPadding: 14,
         measureAxisTitleColor: const Color(0xFF999999),
         measureLabelColor: const Color(0xFF999999),

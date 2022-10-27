@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:signal_analyst/widgets/AppBarWidget.dart';
 import 'package:signal_analyst/widgets/BarChartWidget.dart';
 import 'package:signal_analyst/widgets/SelectWidget.dart';
+import 'package:signal_analyst/widgets/DetailsListItemWidget.dart';
 
 class AnalisysPage extends StatelessWidget {
   const AnalisysPage({super.key});
@@ -54,9 +55,9 @@ class AnalisysPage extends StatelessWidget {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const <Widget>[
-                      SelectWidget(),
-                      Padding(
+                    children: <Widget>[
+                      const SelectWidget(),
+                      const Padding(
                         padding: EdgeInsets.only(top: 20.0),
                         child: Text(
                           "Details",
@@ -66,7 +67,21 @@ class AnalisysPage extends StatelessWidget {
                               fontWeight: FontWeight.bold),
                         ),
                       ),
-                      BarChartWidget()
+                      const BarChartWidget(),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 20.0),
+                        child: SizedBox(
+                          height: 100,
+                          width: 349,
+                          child: ListView(
+                            children: const <Widget>[
+                              DetailsListItemWidget(),
+                              DetailsListItemWidget(),
+                              DetailsListItemWidget(),
+                            ],
+                          ),
+                        ),
+                      )
                     ],
                   )
                 ],
