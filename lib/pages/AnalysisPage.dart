@@ -5,6 +5,7 @@ import 'package:signal_analyst/widgets/BarChartWidget.dart';
 import 'package:signal_analyst/widgets/SelectWidget.dart';
 import 'package:signal_analyst/widgets/DetailsListItemWidget.dart';
 import 'package:signal_analyst/widgets/CardListItemWidget.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class AnalisysPage extends StatelessWidget {
   const AnalisysPage({super.key});
@@ -77,7 +78,21 @@ class AnalisysPage extends StatelessWidget {
                           child: ListView.builder(
                             itemCount: 5,
                             itemBuilder: (BuildContext context, int index) {
-                              return const DetailsListItemWidget();
+                              if (index % 2 == 0) {
+                                return const DetailsListItemWidget(
+                                  letfIcon: FontAwesomeIcons.circleArrowUp,
+                                  bgColor: Color(0xFFBEBBA2),
+                                  fgColor: Colors.white,
+                                  iconColor: Color(0xFF1DBE0F),
+                                );
+                              } else {
+                                return const DetailsListItemWidget(
+                                  letfIcon: FontAwesomeIcons.circleArrowDown,
+                                  bgColor: Color(0xFFEFEFEF),
+                                  fgColor: Color(0xFFBEBBA2),
+                                  iconColor: Color(0xFFC34848),
+                                );
+                              }
                             },
                           ),
                         ),
@@ -94,7 +109,22 @@ class AnalisysPage extends StatelessWidget {
                         child: ListView.builder(
                             itemCount: 15,
                             itemBuilder: (BuildContext context, int index) {
-                              return const CardListItemWidget();
+                              if (index % 2 == 0) {
+                                return const CardListItemWidget(
+                                  signalIcon: FontAwesomeIcons.circleChevronUp,
+                                  signalIconColor: Color(0xFF1DBE0F),
+                                  bgColor: Color(0xFFBEBBA2),
+                                  fgColor: Colors.white,
+                                );
+                              } else {
+                                return const CardListItemWidget(
+                                  signalIcon:
+                                      FontAwesomeIcons.circleChevronDown,
+                                  signalIconColor: Color(0xFFC34848),
+                                  bgColor: Color(0xFFEFEFEF),
+                                  fgColor: Color(0xFFBEBBA2),
+                                );
+                              }
                             }),
                       )
                     ],
