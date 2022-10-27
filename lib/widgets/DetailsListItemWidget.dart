@@ -16,11 +16,12 @@ class DetailsListItemWidget extends StatelessWidget {
             color: Color(0xFFBEBBA2),
             borderRadius: BorderRadius.all(Radius.circular(10))),
         child: ListTile(
-          minLeadingWidth: 4,
+          minVerticalPadding: 2,
           leading: Padding(
             padding: const EdgeInsets.only(right: 8.0),
             child: IconButton(
                 iconSize: 18,
+                color: const Color(0xFF1DBE0F),
                 onPressed: () {},
                 icon: const FaIcon(FontAwesomeIcons.circleArrowUp)),
           ),
@@ -34,6 +35,7 @@ class DetailsListItemWidget extends StatelessWidget {
                 style: TextStyle(
                     fontFamily: "Poppins Regular",
                     fontWeight: FontWeight.w600,
+                    fontSize: 12,
                     color: Colors.white),
               ),
               Text(
@@ -41,6 +43,7 @@ class DetailsListItemWidget extends StatelessWidget {
                 style: TextStyle(
                     fontFamily: "Poppins Regular",
                     fontWeight: FontWeight.w600,
+                    fontSize: 12,
                     color: Colors.white),
               )
             ],

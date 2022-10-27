@@ -4,6 +4,7 @@ import 'package:signal_analyst/widgets/AppBarWidget.dart';
 import 'package:signal_analyst/widgets/BarChartWidget.dart';
 import 'package:signal_analyst/widgets/SelectWidget.dart';
 import 'package:signal_analyst/widgets/DetailsListItemWidget.dart';
+import 'package:signal_analyst/widgets/CardListItemWidget.dart';
 
 class AnalisysPage extends StatelessWidget {
   const AnalisysPage({super.key});
@@ -71,16 +72,30 @@ class AnalisysPage extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(top: 20.0),
                         child: SizedBox(
-                          height: 100,
+                          height: 120,
                           width: 349,
-                          child: ListView(
-                            children: const <Widget>[
-                              DetailsListItemWidget(),
-                              DetailsListItemWidget(),
-                              DetailsListItemWidget(),
-                            ],
+                          child: ListView.builder(
+                            itemCount: 5,
+                            itemBuilder: (BuildContext context, int index) {
+                              return const DetailsListItemWidget();
+                            },
                           ),
                         ),
+                      )
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      SizedBox(
+                        width: 365,
+                        height: 400,
+                        child: ListView.builder(
+                            itemCount: 15,
+                            itemBuilder: (BuildContext context, int index) {
+                              return const CardListItemWidget();
+                            }),
                       )
                     ],
                   )
