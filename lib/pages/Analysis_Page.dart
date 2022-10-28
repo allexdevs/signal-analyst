@@ -1,6 +1,6 @@
 // ignore_for_file: file_names, avoid_print
 import 'package:flutter/material.dart';
-import 'package:signal_analyst/services/api_service.dart';
+import 'package:signal_analyst/controllers/analysis_controller.dart';
 import 'package:signal_analyst/widgets/AppBarWidget.dart';
 import 'package:signal_analyst/widgets/BarChartWidget.dart';
 import 'package:signal_analyst/widgets/SelectWidget.dart';
@@ -16,18 +16,14 @@ class AnalisysPage extends StatefulWidget {
 }
 
 class _AnalisysPageState extends State<AnalisysPage> {
+  final TextEditingController profitCtrl = TextEditingController();
+
   @override
   void initState() {
     super.initState();
-    final api = ApiService();
-    api.fetchData();
+    AnalysisController analysis = AnalysisController();
+    analysis.getRawData("EUR/USD", "5min");
   }
-
-  final TextEditingController symbolCtrl = TextEditingController();
-
-  final TextEditingController profitCtrl = TextEditingController();
-
-  final TextEditingController timeframeCtrl = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -82,9 +78,7 @@ class _AnalisysPageState extends State<AnalisysPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     SelectWidget(
-                      symbolController: symbolCtrl,
                       profitController: profitCtrl,
-                      timeframeController: timeframeCtrl,
                     ),
                     const Padding(
                       padding: EdgeInsets.only(top: 20.0),

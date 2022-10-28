@@ -6,15 +6,9 @@ import 'package:signal_analyst/enums/symbols_enum.dart';
 import 'package:signal_analyst/enums/timeframes_enum.dart';
 
 class SelectWidget extends StatefulWidget {
-  const SelectWidget(
-      {super.key,
-      this.symbolController,
-      this.profitController,
-      this.timeframeController});
+  const SelectWidget({super.key, this.profitController});
 
-  final dynamic symbolController;
   final dynamic profitController;
-  final dynamic timeframeController;
 
   @override
   State<SelectWidget> createState() => _SelectWidgetState();
@@ -245,7 +239,7 @@ class _SelectWidgetState extends State<SelectWidget> {
             child: SizedBox(
               height: 30,
               child: TextFormField(
-                controller: widget.timeframeController,
+                controller: widget.profitController,
                 style: const TextStyle(
                     color: Color(0xFF999999), fontWeight: FontWeight.w600),
                 decoration: const InputDecoration(
