@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:signal_analyst/pages/AnalysisPage.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:signal_analyst/pages/Analysis_Page.dart';
 import 'package:signal_analyst/pages/ListPage.dart';
 import 'package:window_manager/window_manager.dart';
 
@@ -8,9 +9,9 @@ void main() async {
   await windowManager.ensureInitialized();
 
   WindowOptions windowOptions = const WindowOptions(
-      size: Size(800, 620),
-      minimumSize: Size(800, 620),
-      maximumSize: Size(800, 620),
+      size: Size(840, 700),
+      minimumSize: Size(840, 700),
+      maximumSize: Size(840, 700),
       center: true,
       backgroundColor: Colors.transparent,
       skipTaskbar: false,
@@ -21,7 +22,7 @@ void main() async {
     await windowManager.focus();
   });
 
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       routes: {
-        '/': (context) => const AnalisysPage(),
+        '/': (context) => AnalisysPage(),
         '/signal-list': (context) => const ListPage()
       },
     );

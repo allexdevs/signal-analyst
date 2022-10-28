@@ -34,6 +34,8 @@ dependencies:
   window_manager: ^0.2.7
   d_chart: ^0.1.0
   font_awesome_flutter: 
+  flutter_riverpod: ^2.0.2
+  dio: ^4.0.6
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
