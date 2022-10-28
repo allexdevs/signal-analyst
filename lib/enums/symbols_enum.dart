@@ -3,7 +3,7 @@ enum SymbolsEnum {
   eurGbp(text: "EUR/GBP", value: "EUR/GBP"),
   eurUsd(text: "EUR/USD", value: "EUR/USD"),
   eurCad(text: "EUR/CAD", value: "EUR/CAD"),
-  eurchf(text: "EUR/CHF", value: "EUR/CHF"),
+  eurChf(text: "EUR/CHF", value: "EUR/CHF"),
   eurNzd(text: "EUR/NZD", value: "EUR/NZD"),
   gbpUsd(text: "GBP/USD", value: "GBP/USD"),
   gbpJpy(text: "GBP/JPY", value: "GBP/JPY"),

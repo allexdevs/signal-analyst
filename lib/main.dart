@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       routes: {
-        '/': (context) => AnalisysPage(),
+        '/': (context) => const AnalisysPage(),
         '/signal-list': (context) => const ListPage()
       },
     );

@@ -100,7 +100,7 @@ class _AnalisysPageState extends State<AnalisysPage> {
                     Padding(
                       padding: const EdgeInsets.only(top: 20.0),
                       child: SizedBox(
-                        height: 225,
+                        height: 166,
                         width: 349,
                         child: ListView.builder(
                           itemCount: 5,
