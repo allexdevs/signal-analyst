@@ -46,6 +46,18 @@ class _SelectWidgetState extends State<SelectWidget> {
     TimeframesEnum.min5.value,
   ];
 
+  void selectStartTime() {
+    showTimePicker(context: context, initialTime: TimeOfDay.now())
+        .then((value) => print(value))
+        .catchError((onError) => print(onError));
+  }
+
+  void selectEndTime() {
+    showTimePicker(context: context, initialTime: TimeOfDay.now())
+        .then((value) => print(value))
+        .catchError((onError) => print(onError));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -177,32 +189,27 @@ class _SelectWidgetState extends State<SelectWidget> {
               Padding(
                 padding: const EdgeInsets.only(top: 12.0),
                 child: SizedBox(
-                    width: 149.5,
-                    child: SizedBox(
-                      height: 30,
-                      child: TextFormField(
-                        controller: widget.symbolController,
-                        style: const TextStyle(
-                            color: Color(0xFF999999),
-                            fontWeight: FontWeight.w600),
-                        decoration: const InputDecoration(
-                            hintText: "symbol",
-                            hintStyle: TextStyle(
-                                color: Color(0xFF999999),
-                                fontFamily: "Poppins Regular",
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600),
-                            fillColor: Color(0xFFFFFFFF),
-                            filled: true,
-                            isDense: true,
-                            contentPadding: EdgeInsets.symmetric(
-                                horizontal: 10.0, vertical: 8.0),
-                            border: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)))),
-                      ),
-                    )),
+                  width: 149.50,
+                  child: ElevatedButton(
+                    onPressed: selectStartTime,
+                    style: ButtonStyle(
+                        overlayColor: MaterialStateProperty.resolveWith(
+                            (states) => const Color(0xFFDEDEDE)),
+                        shape: MaterialStateProperty.resolveWith((states) =>
+                            RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10))),
+                        elevation:
+                            MaterialStateProperty.resolveWith((states) => 0.0),
+                        backgroundColor: MaterialStateProperty.resolveWith(
+                            (states) => Colors.white)),
+                    child: const Text("00:00:00",
+                        style: TextStyle(
+                            fontFamily: "Poppins Regular",
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF999999))),
+                  ),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 12.0),
@@ -210,27 +217,24 @@ class _SelectWidgetState extends State<SelectWidget> {
                     width: 149.5,
                     child: SizedBox(
                       height: 30,
-                      child: TextFormField(
-                        controller: widget.profitController,
-                        style: const TextStyle(
-                            color: Color(0xFF999999),
-                            fontWeight: FontWeight.w600),
-                        decoration: const InputDecoration(
-                            hintText: "% profit",
-                            hintStyle: TextStyle(
-                                color: Color(0xFF999999),
+                      child: ElevatedButton(
+                        onPressed: selectEndTime,
+                        style: ButtonStyle(
+                            overlayColor: MaterialStateProperty.resolveWith(
+                                (states) => const Color(0xFFDEDEDE)),
+                            shape: MaterialStateProperty.resolveWith((states) =>
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10))),
+                            elevation: MaterialStateProperty.resolveWith(
+                                (states) => 0.0),
+                            backgroundColor: MaterialStateProperty.resolveWith(
+                                (states) => Colors.white)),
+                        child: const Text("00:00:00",
+                            style: TextStyle(
                                 fontFamily: "Poppins Regular",
                                 fontSize: 12,
-                                fontWeight: FontWeight.w600),
-                            fillColor: Color(0xFFFFFFFF),
-                            filled: true,
-                            isDense: true,
-                            contentPadding: EdgeInsets.symmetric(
-                                horizontal: 10.0, vertical: 8.0),
-                            border: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)))),
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFF999999))),
                       ),
                     )),
               ),
@@ -245,7 +249,7 @@ class _SelectWidgetState extends State<SelectWidget> {
                 style: const TextStyle(
                     color: Color(0xFF999999), fontWeight: FontWeight.w600),
                 decoration: const InputDecoration(
-                    hintText: "timeframe",
+                    hintText: "% profit",
                     hintStyle: TextStyle(
                         color: Color(0xFF999999),
                         fontFamily: "Poppins Regular",
