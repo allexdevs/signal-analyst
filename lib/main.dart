@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:provider/provider.dart';
 import 'package:signal_analyst/pages/analysis_page.dart';
 import 'package:signal_analyst/pages/list_page.dart';
+import 'package:signal_analyst/repositories/analysis_repository.dart';
 import 'package:window_manager/window_manager.dart';
 
 void main() async {
@@ -22,7 +23,9 @@ void main() async {
     await windowManager.focus();
   });
 
-  runApp(const ProviderScope(child: MyApp()));
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: (_) => AnalysisRepository()),
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {

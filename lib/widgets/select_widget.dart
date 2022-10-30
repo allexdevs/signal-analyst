@@ -16,7 +16,8 @@ class SelectWidget extends StatefulWidget {
       this.selectEndTime,
       this.selectStartTime,
       this.selectSymbol,
-      this.selectTimeframe});
+      this.selectTimeframe,
+      this.selectProfit});
 
   final dynamic profitController;
   final String startTime;
@@ -29,6 +30,7 @@ class SelectWidget extends StatefulWidget {
   final dynamic selectEndTime;
   final dynamic selectSymbol;
   final dynamic selectTimeframe;
+  final dynamic selectProfit;
 
   @override
   State<SelectWidget> createState() => _SelectWidgetState();
@@ -112,29 +114,19 @@ class _SelectWidgetState extends State<SelectWidget> {
                         borderRadius: BorderRadius.all(Radius.circular(10))),
                     child: DropdownButton(
                       items: widget.timeframes
-                          .map<DropdownMenuItem<String>>(
-                              (String value) => DropdownMenuItem<String>(
+                          .map<DropdownMenuItem<String>>((String value) =>
+                              DropdownMenuItem<String>(
                                   value: value,
-                                  child: value == '1min'
-                                      ? const Text(
-                                          "1 minuto",
-                                          style: TextStyle(
-                                              fontFamily: "Poppins Regular",
-                                              fontSize: 12,
-                                              color: Color(0xFF3B5A68),
-                                              fontWeight: FontWeight.bold),
-                                        )
-                                      : const Text(
-                                          "5 minutos",
-                                          style: TextStyle(
-                                              fontFamily: "Poppins Regular",
-                                              fontSize: 12,
-                                              color: Color(0xFF3B5A68),
-                                              fontWeight: FontWeight.bold),
-                                        )))
+                                  child: Text(value,
+                                      style: const TextStyle(
+                                          fontFamily: "Poppins Regular",
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.bold,
+                                          color: Color(0xFF3B5A68)))))
                           .toList(),
                       underline: Container(height: 0.0),
                       isExpanded: true,
+                      value: widget.timeframe,
                       hint: Text(widget.timeframe,
                           style: const TextStyle(
                               fontFamily: "Poppins Regular",
@@ -181,7 +173,7 @@ class _SelectWidgetState extends State<SelectWidget> {
                             fontFamily: "Poppins Regular",
                             fontSize: 12,
                             fontWeight: FontWeight.bold,
-                            color: Color(0xFF999999))),
+                            color: Color(0xFF3B5A68))),
                   ),
                 ),
               ),
@@ -208,7 +200,7 @@ class _SelectWidgetState extends State<SelectWidget> {
                                 fontFamily: "Poppins Regular",
                                 fontSize: 12,
                                 fontWeight: FontWeight.bold,
-                                color: Color(0xFF999999))),
+                                color: Color(0xFF3B5A68))),
                       ),
                     )),
               ),
@@ -219,13 +211,15 @@ class _SelectWidgetState extends State<SelectWidget> {
             child: SizedBox(
               height: 30,
               child: TextFormField(
+                keyboardType: TextInputType.text,
+                onChanged: widget.selectProfit,
                 controller: widget.profitController,
                 style: const TextStyle(
-                    color: Color(0xFF999999), fontWeight: FontWeight.w600),
+                    color: Color(0xFF3B5A68), fontWeight: FontWeight.w600),
                 decoration: const InputDecoration(
                     hintText: "% profit",
                     hintStyle: TextStyle(
-                        color: Color(0xFF999999),
+                        color: Color(0xFF3B5A68),
                         fontFamily: "Poppins Regular",
                         fontSize: 12,
                         fontWeight: FontWeight.w600),

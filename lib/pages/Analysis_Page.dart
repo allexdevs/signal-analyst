@@ -1,6 +1,6 @@
 // ignore_for_file: file_names, avoid_print
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:provider/provider.dart';
 import 'package:signal_analyst/enums/symbols_enum.dart';
 import 'package:signal_analyst/enums/timeframes_enum.dart';
 import 'package:signal_analyst/repositories/analysis_repository.dart';
@@ -11,19 +11,14 @@ import 'package:signal_analyst/widgets/details_list_item_widget.dart';
 import 'package:signal_analyst/widgets/card_list_item_widget.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class AnalisysPage extends ConsumerStatefulWidget {
+class AnalisysPage extends StatefulWidget {
   const AnalisysPage({super.key});
 
   @override
-  ConsumerState<AnalisysPage> createState() => _AnalisysPageState();
+  State<AnalisysPage> createState() => _AnalisysPageState();
 }
 
-class _AnalisysPageState extends ConsumerState<AnalisysPage> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
+class _AnalisysPageState extends State<AnalisysPage> {
   final TextEditingController profitCtrl = TextEditingController();
 
   List<String> symbols = [
@@ -51,22 +46,34 @@ class _AnalisysPageState extends ConsumerState<AnalisysPage> {
     TimeframesEnum.min5.value,
   ];
 
-  void selectStartTime() {
-    showTimePicker(context: context, initialTime: TimeOfDay.now())
-        .then((value) => print(value))
-        .catchError((onError) {
-      print(onError);
-    });
-  }
-
-  void selectEndTime() {
-    showTimePicker(context: context, initialTime: TimeOfDay.now())
-        .then((value) => print(value))
-        .catchError((onError) => print(onError));
-  }
-
   @override
   Widget build(BuildContext context) {
+    final analysis = Provider.of<AnalysisRepository>(context);
+
+    void selectStartTime() {
+      showTimePicker(context: context, initialTime: TimeOfDay.now())
+          .then((value) {
+        analysis.changeStartTime("${value!.hour}:00:00");
+      }).catchError((onError) {
+        print(onError);
+      });
+    }
+
+    void selectEndTime() {
+      showTimePicker(context: context, initialTime: TimeOfDay.now())
+          .then((value) {
+        analysis.changeEndTime("${value!.hour}:00:00");
+      }).catchError((onError) {
+        print(onError);
+      });
+    }
+
+    void selectProfit(String? value) {
+      value!.isNotEmpty
+          ? analysis.changeProfitPercent(value)
+          : profitCtrl.clear();
+    }
+
     return Scaffold(
       appBar: const PreferredSize(
           preferredSize: Size.fromHeight(50),
@@ -120,11 +127,16 @@ class _AnalisysPageState extends ConsumerState<AnalisysPage> {
                     SelectWidget(
                       symbols: symbols,
                       timeframes: timeframes,
-                      symbol: "",
-                      timeframe: "",
-                      startTime: "",
-                      endTime: "",
+                      symbol: analysis.symbol,
+                      timeframe: analysis.timeframe,
+                      startTime: analysis.startTime,
+                      endTime: analysis.endtTime,
+                      selectSymbol: analysis.changeSymbol,
+                      selectTimeframe: analysis.changeTimeframe,
+                      selectStartTime: selectStartTime,
+                      selectEndTime: selectEndTime,
                       profitController: profitCtrl,
+                      selectProfit: selectProfit,
                     ),
                     const Padding(
                       padding: EdgeInsets.only(top: 20.0),
@@ -202,7 +214,9 @@ class _AnalisysPageState extends ConsumerState<AnalisysPage> {
       floatingActionButton: FloatingActionButton.extended(
           label: const Text("Iniciar",
               style: TextStyle(fontFamily: "Poppins Regular")),
-          onPressed: () {},
+          onPressed: () {
+            analysis.pullInfo();
+          },
           backgroundColor: const Color(0xFF3B5A68),
           icon: const FaIcon(FontAwesomeIcons.circlePlay)),
     );
