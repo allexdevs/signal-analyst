@@ -1,28 +1,68 @@
 // ignore_for_file: file_names, avoid_print
 import 'package:flutter/material.dart';
-import 'package:signal_analyst/controllers/analysis_controller.dart';
-import 'package:signal_analyst/widgets/AppBarWidget.dart';
-import 'package:signal_analyst/widgets/BarChartWidget.dart';
-import 'package:signal_analyst/widgets/SelectWidget.dart';
-import 'package:signal_analyst/widgets/DetailsListItemWidget.dart';
-import 'package:signal_analyst/widgets/CardListItemWidget.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:signal_analyst/enums/symbols_enum.dart';
+import 'package:signal_analyst/enums/timeframes_enum.dart';
+import 'package:signal_analyst/repositories/analysis_repository.dart';
+import 'package:signal_analyst/widgets/app_bar_widget.dart';
+import 'package:signal_analyst/widgets/bar_chart_widget.dart';
+import 'package:signal_analyst/widgets/select_widget.dart';
+import 'package:signal_analyst/widgets/details_list_item_widget.dart';
+import 'package:signal_analyst/widgets/card_list_item_widget.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class AnalisysPage extends StatefulWidget {
+class AnalisysPage extends ConsumerStatefulWidget {
   const AnalisysPage({super.key});
 
   @override
-  State<AnalisysPage> createState() => _AnalisysPageState();
+  ConsumerState<AnalisysPage> createState() => _AnalisysPageState();
 }
 
-class _AnalisysPageState extends State<AnalisysPage> {
-  final TextEditingController profitCtrl = TextEditingController();
-
+class _AnalisysPageState extends ConsumerState<AnalisysPage> {
   @override
   void initState() {
     super.initState();
-    AnalysisController analysis = AnalysisController();
-    analysis.getRawData("EUR/USD", "5min");
+  }
+
+  final TextEditingController profitCtrl = TextEditingController();
+
+  List<String> symbols = [
+    SymbolsEnum.eurJpy.value,
+    SymbolsEnum.eurGbp.value,
+    SymbolsEnum.eurUsd.value,
+    SymbolsEnum.eurCad.value,
+    SymbolsEnum.eurChf.value,
+    SymbolsEnum.eurNzd.value,
+    SymbolsEnum.gbpUsd.value,
+    SymbolsEnum.gbpJpy.value,
+    SymbolsEnum.gbpNzd.value,
+    SymbolsEnum.audJpy.value,
+    SymbolsEnum.audUsd.value,
+    SymbolsEnum.audNzd.value,
+    SymbolsEnum.audCad.value,
+    SymbolsEnum.usdNok.value,
+    SymbolsEnum.usdJpy.value,
+    SymbolsEnum.usdCad.value,
+    SymbolsEnum.usdChf.value,
+  ];
+
+  List<String> timeframes = [
+    TimeframesEnum.min1.value,
+    TimeframesEnum.min5.value,
+  ];
+
+  void selectStartTime() {
+    showTimePicker(context: context, initialTime: TimeOfDay.now())
+        .then((value) => print(value))
+        .catchError((onError) {
+      print(onError);
+    });
+  }
+
+  void selectEndTime() {
+    showTimePicker(context: context, initialTime: TimeOfDay.now())
+        .then((value) => print(value))
+        .catchError((onError) => print(onError));
   }
 
   @override
@@ -78,6 +118,12 @@ class _AnalisysPageState extends State<AnalisysPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     SelectWidget(
+                      symbols: symbols,
+                      timeframes: timeframes,
+                      symbol: "",
+                      timeframe: "",
+                      startTime: "",
+                      endTime: "",
                       profitController: profitCtrl,
                     ),
                     const Padding(

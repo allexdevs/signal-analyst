@@ -2,56 +2,39 @@
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:signal_analyst/enums/symbols_enum.dart';
-import 'package:signal_analyst/enums/timeframes_enum.dart';
 
 class SelectWidget extends StatefulWidget {
-  const SelectWidget({super.key, this.profitController});
+  const SelectWidget(
+      {super.key,
+      this.profitController,
+      required this.startTime,
+      required this.endTime,
+      required this.symbol,
+      required this.timeframe,
+      required this.symbols,
+      required this.timeframes,
+      this.selectEndTime,
+      this.selectStartTime,
+      this.selectSymbol,
+      this.selectTimeframe});
 
   final dynamic profitController;
+  final String startTime;
+  final String endTime;
+  final String symbol;
+  final String timeframe;
+  final List<String> symbols;
+  final List<String> timeframes;
+  final dynamic selectStartTime;
+  final dynamic selectEndTime;
+  final dynamic selectSymbol;
+  final dynamic selectTimeframe;
 
   @override
   State<SelectWidget> createState() => _SelectWidgetState();
 }
 
 class _SelectWidgetState extends State<SelectWidget> {
-  List<String> symbols = [
-    SymbolsEnum.eurJpy.value,
-    SymbolsEnum.eurGbp.value,
-    SymbolsEnum.eurUsd.value,
-    SymbolsEnum.eurCad.value,
-    SymbolsEnum.eurChf.value,
-    SymbolsEnum.eurNzd.value,
-    SymbolsEnum.gbpUsd.value,
-    SymbolsEnum.gbpJpy.value,
-    SymbolsEnum.gbpNzd.value,
-    SymbolsEnum.audJpy.value,
-    SymbolsEnum.audUsd.value,
-    SymbolsEnum.audNzd.value,
-    SymbolsEnum.audCad.value,
-    SymbolsEnum.usdNok.value,
-    SymbolsEnum.usdJpy.value,
-    SymbolsEnum.usdCad.value,
-    SymbolsEnum.usdChf.value,
-  ];
-
-  List<String> timeframes = [
-    TimeframesEnum.min1.value,
-    TimeframesEnum.min5.value,
-  ];
-
-  void selectStartTime() {
-    showTimePicker(context: context, initialTime: TimeOfDay.now())
-        .then((value) => print(value))
-        .catchError((onError) => print(onError));
-  }
-
-  void selectEndTime() {
-    showTimePicker(context: context, initialTime: TimeOfDay.now())
-        .then((value) => print(value))
-        .catchError((onError) => print(onError));
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -80,7 +63,7 @@ class _SelectWidgetState extends State<SelectWidget> {
                         color: Colors.white,
                         borderRadius: BorderRadius.all(Radius.circular(10))),
                     child: DropdownButton<String>(
-                        items: symbols
+                        items: widget.symbols
                             .map<DropdownMenuItem<String>>(
                                 (String value) => DropdownMenuItem<String>(
                                       value: value,
@@ -94,9 +77,7 @@ class _SelectWidgetState extends State<SelectWidget> {
                                       ),
                                     ))
                             .toList(),
-                        onChanged: (String? value) {
-                          print(value);
-                        },
+                        onChanged: widget.selectSymbol,
                         icon: const Padding(
                           padding: EdgeInsets.only(right: 10),
                           child: FaIcon(
@@ -107,11 +88,12 @@ class _SelectWidgetState extends State<SelectWidget> {
                         ),
                         elevation: 4,
                         isExpanded: true,
+                        value: widget.symbol,
                         underline: Container(
                           height: 0,
                         ),
-                        hint: const Text("symbol",
-                            style: TextStyle(
+                        hint: Text(widget.symbol,
+                            style: const TextStyle(
                                 fontFamily: "Poppins Regular",
                                 fontSize: 12,
                                 fontWeight: FontWeight.bold,
@@ -129,7 +111,7 @@ class _SelectWidgetState extends State<SelectWidget> {
                         color: Colors.white,
                         borderRadius: BorderRadius.all(Radius.circular(10))),
                     child: DropdownButton(
-                      items: timeframes
+                      items: widget.timeframes
                           .map<DropdownMenuItem<String>>(
                               (String value) => DropdownMenuItem<String>(
                                   value: value,
@@ -153,15 +135,13 @@ class _SelectWidgetState extends State<SelectWidget> {
                           .toList(),
                       underline: Container(height: 0.0),
                       isExpanded: true,
-                      hint: const Text("timeframe",
-                          style: TextStyle(
+                      hint: Text(widget.timeframe,
+                          style: const TextStyle(
                               fontFamily: "Poppins Regular",
                               fontSize: 12,
                               fontWeight: FontWeight.bold,
                               color: Color(0xFF999999))),
-                      onChanged: (String? value) {
-                        print(value);
-                      },
+                      onChanged: widget.selectTimeframe,
                       icon: const Padding(
                         padding: EdgeInsets.only(right: 10),
                         child: FaIcon(
@@ -185,7 +165,7 @@ class _SelectWidgetState extends State<SelectWidget> {
                 child: SizedBox(
                   width: 149.50,
                   child: ElevatedButton(
-                    onPressed: selectStartTime,
+                    onPressed: widget.selectStartTime,
                     style: ButtonStyle(
                         overlayColor: MaterialStateProperty.resolveWith(
                             (states) => const Color(0xFFDEDEDE)),
@@ -196,8 +176,8 @@ class _SelectWidgetState extends State<SelectWidget> {
                             MaterialStateProperty.resolveWith((states) => 0.0),
                         backgroundColor: MaterialStateProperty.resolveWith(
                             (states) => Colors.white)),
-                    child: const Text("00:00:00",
-                        style: TextStyle(
+                    child: Text(widget.startTime,
+                        style: const TextStyle(
                             fontFamily: "Poppins Regular",
                             fontSize: 12,
                             fontWeight: FontWeight.bold,
@@ -212,7 +192,7 @@ class _SelectWidgetState extends State<SelectWidget> {
                     child: SizedBox(
                       height: 30,
                       child: ElevatedButton(
-                        onPressed: selectEndTime,
+                        onPressed: widget.selectEndTime,
                         style: ButtonStyle(
                             overlayColor: MaterialStateProperty.resolveWith(
                                 (states) => const Color(0xFFDEDEDE)),
@@ -223,8 +203,8 @@ class _SelectWidgetState extends State<SelectWidget> {
                                 (states) => 0.0),
                             backgroundColor: MaterialStateProperty.resolveWith(
                                 (states) => Colors.white)),
-                        child: const Text("00:00:00",
-                            style: TextStyle(
+                        child: Text(widget.endTime,
+                            style: const TextStyle(
                                 fontFamily: "Poppins Regular",
                                 fontSize: 12,
                                 fontWeight: FontWeight.bold,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:signal_analyst/pages/Analysis_Page.dart';
-import 'package:signal_analyst/pages/ListPage.dart';
+import 'package:signal_analyst/pages/analysis_page.dart';
+import 'package:signal_analyst/pages/list_page.dart';
 import 'package:window_manager/window_manager.dart';
 
 void main() async {
