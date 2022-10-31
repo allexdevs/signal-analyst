@@ -13,6 +13,7 @@ class SelectWidget extends StatefulWidget {
       required this.timeframe,
       required this.symbols,
       required this.timeframes,
+      required this.profit,
       this.selectEndTime,
       this.selectStartTime,
       this.selectSymbol,
@@ -24,6 +25,7 @@ class SelectWidget extends StatefulWidget {
   final String endTime;
   final String symbol;
   final String timeframe;
+  final String profit;
   final List<String> symbols;
   final List<String> timeframes;
   final dynamic selectStartTime;
@@ -216,19 +218,22 @@ class _SelectWidgetState extends State<SelectWidget> {
                 controller: widget.profitController,
                 style: const TextStyle(
                     color: Color(0xFF3B5A68), fontWeight: FontWeight.w600),
-                decoration: const InputDecoration(
-                    hintText: "% profit",
-                    hintStyle: TextStyle(
-                        color: Color(0xFF3B5A68),
-                        fontFamily: "Poppins Regular",
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600),
-                    fillColor: Color(0xFFFFFFFF),
+                decoration: InputDecoration(
+                    floatingLabelBehavior: FloatingLabelBehavior.never,
+                    label: Text(
+                      "${widget.profit} %",
+                      style: const TextStyle(
+                          color: Color(0xFF3B5A68),
+                          fontFamily: "Poppins Regular",
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600),
+                    ),
+                    fillColor: const Color(0xFFFFFFFF),
                     filled: true,
                     isDense: true,
-                    contentPadding:
-                        EdgeInsets.symmetric(horizontal: 10.0, vertical: 8.0),
-                    border: OutlineInputBorder(
+                    contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 10.0, vertical: 8.0),
+                    border: const OutlineInputBorder(
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.all(Radius.circular(10)))),
               ),

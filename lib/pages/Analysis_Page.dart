@@ -130,7 +130,8 @@ class _AnalisysPageState extends State<AnalisysPage> {
                       symbol: analysis.symbol,
                       timeframe: analysis.timeframe,
                       startTime: analysis.startTime,
-                      endTime: analysis.endtTime,
+                      endTime: analysis.endTime,
+                      profit: analysis.profitPercent.toStringAsFixed(2),
                       selectSymbol: analysis.changeSymbol,
                       selectTimeframe: analysis.changeTimeframe,
                       selectStartTime: selectStartTime,
@@ -212,7 +213,7 @@ class _AnalisysPageState extends State<AnalisysPage> {
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
-          label: const Text("Iniciar",
+          label: const Text("Play",
               style: TextStyle(fontFamily: "Poppins Regular")),
           onPressed: () {
             analysis.pullInfo();
