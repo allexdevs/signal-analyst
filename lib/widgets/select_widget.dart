@@ -7,29 +7,25 @@ class SelectWidget extends StatefulWidget {
   const SelectWidget(
       {super.key,
       this.profitController,
-      required this.startTime,
-      required this.endTime,
+      required this.time,
       required this.symbol,
       required this.timeframe,
       required this.symbols,
       required this.timeframes,
       required this.profit,
-      this.selectEndTime,
-      this.selectStartTime,
+      this.selectTime,
       this.selectSymbol,
       this.selectTimeframe,
       this.selectProfit});
 
   final dynamic profitController;
-  final String startTime;
-  final String endTime;
+  final String time;
   final String symbol;
   final String timeframe;
   final String profit;
   final List<String> symbols;
   final List<String> timeframes;
-  final dynamic selectStartTime;
-  final dynamic selectEndTime;
+  final dynamic selectTime;
   final dynamic selectSymbol;
   final dynamic selectTimeframe;
   final dynamic selectProfit;
@@ -43,7 +39,7 @@ class _SelectWidgetState extends State<SelectWidget> {
   Widget build(BuildContext context) {
     return Container(
       width: 349,
-      height: 160,
+      height: 120,
       decoration: const BoxDecoration(
           color: Color(0xFFEFEFEF),
           borderRadius: BorderRadius.all(Radius.circular(8))),
@@ -159,7 +155,7 @@ class _SelectWidgetState extends State<SelectWidget> {
                 child: SizedBox(
                   width: 149.50,
                   child: ElevatedButton(
-                    onPressed: widget.selectStartTime,
+                    onPressed: widget.selectTime,
                     style: ButtonStyle(
                         overlayColor: MaterialStateProperty.resolveWith(
                             (states) => const Color(0xFFDEDEDE)),
@@ -170,7 +166,7 @@ class _SelectWidgetState extends State<SelectWidget> {
                             MaterialStateProperty.resolveWith((states) => 0.0),
                         backgroundColor: MaterialStateProperty.resolveWith(
                             (states) => Colors.white)),
-                    child: Text(widget.startTime,
+                    child: Text(widget.time,
                         style: const TextStyle(
                             fontFamily: "Poppins Regular",
                             fontSize: 12,
@@ -180,64 +176,39 @@ class _SelectWidgetState extends State<SelectWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 12.0),
+                padding: const EdgeInsets.only(top: 15.0),
                 child: SizedBox(
-                    width: 149.5,
-                    child: SizedBox(
-                      height: 30,
-                      child: ElevatedButton(
-                        onPressed: widget.selectEndTime,
-                        style: ButtonStyle(
-                            overlayColor: MaterialStateProperty.resolveWith(
-                                (states) => const Color(0xFFDEDEDE)),
-                            shape: MaterialStateProperty.resolveWith((states) =>
-                                RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10))),
-                            elevation: MaterialStateProperty.resolveWith(
-                                (states) => 0.0),
-                            backgroundColor: MaterialStateProperty.resolveWith(
-                                (states) => Colors.white)),
-                        child: Text(widget.endTime,
-                            style: const TextStyle(
-                                fontFamily: "Poppins Regular",
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xFF3B5A68))),
-                      ),
-                    )),
+                  width: 149.5,
+                  height: 30,
+                  child: TextFormField(
+                    keyboardType: TextInputType.text,
+                    onChanged: widget.selectProfit,
+                    controller: widget.profitController,
+                    style: const TextStyle(
+                        color: Color(0xFF3B5A68), fontWeight: FontWeight.w600),
+                    decoration: InputDecoration(
+                        floatingLabelBehavior: FloatingLabelBehavior.never,
+                        label: Text(
+                          "${widget.profit} %",
+                          style: const TextStyle(
+                              color: Color(0xFF3B5A68),
+                              fontFamily: "Poppins Regular",
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600),
+                        ),
+                        fillColor: const Color(0xFFFFFFFF),
+                        filled: true,
+                        isDense: true,
+                        contentPadding: const EdgeInsets.symmetric(
+                            horizontal: 10.0, vertical: 8.0),
+                        border: const OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10)))),
+                  ),
+                ),
               ),
             ],
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 15.0, left: 15.0, right: 15.0),
-            child: SizedBox(
-              height: 30,
-              child: TextFormField(
-                keyboardType: TextInputType.text,
-                onChanged: widget.selectProfit,
-                controller: widget.profitController,
-                style: const TextStyle(
-                    color: Color(0xFF3B5A68), fontWeight: FontWeight.w600),
-                decoration: InputDecoration(
-                    floatingLabelBehavior: FloatingLabelBehavior.never,
-                    label: Text(
-                      "${widget.profit} %",
-                      style: const TextStyle(
-                          color: Color(0xFF3B5A68),
-                          fontFamily: "Poppins Regular",
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600),
-                    ),
-                    fillColor: const Color(0xFFFFFFFF),
-                    filled: true,
-                    isDense: true,
-                    contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 10.0, vertical: 8.0),
-                    border: const OutlineInputBorder(
-                        borderSide: BorderSide.none,
-                        borderRadius: BorderRadius.all(Radius.circular(10)))),
-              ),
-            ),
           ),
         ],
       ),

@@ -5,10 +5,9 @@ import 'package:signal_analyst/models/raw_values.dart';
 import 'package:signal_analyst/services/api_service.dart';
 
 class AnalysisRepository extends ChangeNotifier {
-  String symbol = "EUR/USD";
+  String symbol = "EUR/JPY";
   String timeframe = "5min";
-  String startTime = "00:00:00";
-  String endTime = "00:00:00";
+  String time = "00:00:00";
   double profitPercent = 0.0;
   ApiService apiService = ApiService();
   List<RawValues> formatedValues = [];
@@ -24,12 +23,7 @@ class AnalysisRepository extends ChangeNotifier {
   }
 
   void changeStartTime(String? value) {
-    startTime = value.toString();
-    notifyListeners();
-  }
-
-  void changeEndTime(String? value) {
-    endTime = value.toString();
+    time = value.toString();
     notifyListeners();
   }
 
@@ -56,8 +50,7 @@ class AnalysisRepository extends ChangeNotifier {
       }
 
       for (var item in formatedValues) {
-        if (item.time.startsWith(startTime.substring(0, 2)) ||
-            item.time.startsWith(endTime.substring(0, 2))) {
+        if (item.time.startsWith(time.substring(0, 2))) {
           print("${item.date} - ${item.time}");
         }
       }

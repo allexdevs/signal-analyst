@@ -59,15 +59,6 @@ class _AnalisysPageState extends State<AnalisysPage> {
       });
     }
 
-    void selectEndTime() {
-      showTimePicker(context: context, initialTime: TimeOfDay.now())
-          .then((value) {
-        analysis.changeEndTime("${value!.hour}:00:00");
-      }).catchError((onError) {
-        print(onError);
-      });
-    }
-
     void selectProfit(String? value) {
       value!.isNotEmpty
           ? analysis.changeProfitPercent(value)
@@ -129,13 +120,11 @@ class _AnalisysPageState extends State<AnalisysPage> {
                       timeframes: timeframes,
                       symbol: analysis.symbol,
                       timeframe: analysis.timeframe,
-                      startTime: analysis.startTime,
-                      endTime: analysis.endTime,
+                      time: analysis.time,
                       profit: analysis.profitPercent.toStringAsFixed(2),
                       selectSymbol: analysis.changeSymbol,
                       selectTimeframe: analysis.changeTimeframe,
-                      selectStartTime: selectStartTime,
-                      selectEndTime: selectEndTime,
+                      selectTime: selectStartTime,
                       profitController: profitCtrl,
                       selectProfit: selectProfit,
                     ),
@@ -153,7 +142,7 @@ class _AnalisysPageState extends State<AnalisysPage> {
                     Padding(
                       padding: const EdgeInsets.only(top: 20.0),
                       child: SizedBox(
-                        height: 166,
+                        height: 210,
                         width: 349,
                         child: ListView.builder(
                           itemCount: 5,
@@ -185,8 +174,9 @@ class _AnalisysPageState extends State<AnalisysPage> {
                   children: <Widget>[
                     SizedBox(
                       width: 395,
-                      height: 480,
+                      height: 542,
                       child: ListView.builder(
+                          padding: const EdgeInsets.only(bottom: 50),
                           itemCount: 12,
                           itemBuilder: (BuildContext context, int index) {
                             if (index % 2 == 0) {
