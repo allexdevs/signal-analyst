@@ -10,7 +10,8 @@ class ResultsModel {
   final double callPercent;
   final double putPercent;
   final IconData signalIcon;
+  final Color signalIconColor;
 
   ResultsModel(this.time, this.symbol, this.callAmount, this.putAmount,
-      this.callPercent, this.putPercent, this.signalIcon);
+      this.callPercent, this.putPercent, this.signalIcon, this.signalIconColor);
 }

@@ -177,21 +177,33 @@ class _AnalisysPageState extends State<AnalisysPage> {
                       height: 542,
                       child: ListView.builder(
                           padding: const EdgeInsets.only(bottom: 50),
-                          itemCount: 12,
+                          itemCount: analysis.totalResults.length,
                           itemBuilder: (BuildContext context, int index) {
+                            final item = analysis.totalResults[index];
                             if (index % 2 == 0) {
-                              return const CardListItemWidget(
-                                  signalIcon: FontAwesomeIcons.circleChevronUp,
-                                  signalIconColor: Color(0xFF1DBE0F),
-                                  bgColor: Color(0xFFBEBBA2),
+                              return CardListItemWidget(
+                                  signalIcon: item.signalIcon,
+                                  signalIconColor: item.signalIconColor,
+                                  time: item.time,
+                                  symbol: item.symbol,
+                                  callAmount: item.callAmount,
+                                  putAmount: item.putAmount,
+                                  callPercent: item.callPercent,
+                                  putPercent: item.putPercent,
+                                  bgColor: const Color(0xFFBEBBA2),
                                   fgColor: Colors.white);
                             } else {
-                              return const CardListItemWidget(
-                                  signalIcon:
-                                      FontAwesomeIcons.circleChevronDown,
-                                  signalIconColor: Color(0xFFC34848),
-                                  bgColor: Color(0xFFEFEFEF),
-                                  fgColor: Color(0xFFBEBBA2));
+                              return CardListItemWidget(
+                                  signalIcon: item.signalIcon,
+                                  signalIconColor: item.signalIconColor,
+                                  time: item.time,
+                                  symbol: item.symbol,
+                                  callAmount: item.callAmount,
+                                  putAmount: item.putAmount,
+                                  callPercent: item.callPercent,
+                                  putPercent: item.putPercent,
+                                  bgColor: const Color(0xFFEFEFEF),
+                                  fgColor: const Color(0xFFBEBBA2));
                             }
                           }),
                     )

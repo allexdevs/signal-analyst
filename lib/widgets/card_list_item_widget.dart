@@ -9,12 +9,24 @@ class CardListItemWidget extends StatelessWidget {
       required this.signalIcon,
       required this.signalIconColor,
       required this.bgColor,
-      required this.fgColor});
+      required this.fgColor,
+      required this.time,
+      required this.symbol,
+      required this.callAmount,
+      required this.putAmount,
+      required this.callPercent,
+      required this.putPercent});
 
   final IconData signalIcon;
   final Color signalIconColor;
   final Color bgColor;
   final Color fgColor;
+  final String time;
+  final String symbol;
+  final int callAmount;
+  final int putAmount;
+  final double callPercent;
+  final double putPercent;
 
   @override
   Widget build(BuildContext context) {
@@ -34,14 +46,14 @@ class CardListItemWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Text(
-                  "Time: 00:00:00",
+                  "Time: $time",
                   style: TextStyle(
                       color: fgColor,
                       fontFamily: "Poppins Regular",
                       fontWeight: FontWeight.w600),
                 ),
                 Text(
-                  "Symbol: EUR/USD",
+                  "Symbol: $symbol",
                   style: TextStyle(
                       color: fgColor,
                       fontFamily: "Poppins Regular",
@@ -81,13 +93,13 @@ class CardListItemWidget extends StatelessWidget {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(right: 8.0),
-                            child: Text("Amount: 09",
+                            child: Text("Amount: ${callAmount.toString()}",
                                 style: TextStyle(
                                     color: fgColor,
                                     fontFamily: "Poppins Regular",
                                     fontWeight: FontWeight.w600)),
                           ),
-                          Text("%: 69.23",
+                          Text("%: ${callPercent.toStringAsFixed(2)}",
                               style: TextStyle(
                                   color: fgColor,
                                   fontFamily: "Poppins Regular",
@@ -118,13 +130,13 @@ class CardListItemWidget extends StatelessWidget {
                             ),
                             Padding(
                               padding: const EdgeInsets.only(right: 8.0),
-                              child: Text("Amount: 04",
+                              child: Text("Amount: ${putAmount.toString()}",
                                   style: TextStyle(
                                       color: fgColor,
                                       fontFamily: "Poppins Regular",
                                       fontWeight: FontWeight.w600)),
                             ),
-                            Text("%: 30.76",
+                            Text("%: ${putPercent.toStringAsFixed(2)}",
                                 style: TextStyle(
                                     color: fgColor,
                                     fontFamily: "Poppins Regular",
