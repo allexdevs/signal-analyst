@@ -26,8 +26,14 @@ class BarChartWidget extends StatelessWidget {
           {
             'id': 'Bar',
             'data': [
-              {'domain': '% Call', 'measure': callPercent},
-              {'domain': '% Put', 'measure': purPercent},
+              {
+                'domain': '% Call',
+                'measure': double.parse(callPercent.toStringAsFixed(2))
+              },
+              {
+                'domain': '% Put',
+                'measure': double.parse(purPercent.toStringAsFixed(2))
+              },
               {'domain': 'Call', 'measure': callAmount},
               {'domain': 'Put', 'measure': putAmount},
             ]
@@ -42,15 +48,27 @@ class BarChartWidget extends StatelessWidget {
                     : Colors.red,
         verticalDirection: false,
         measureMax: 100,
+        measureMin: 0,
         axisLineTick: 1,
         animate: true,
         yAxisTitle: "Metrics",
         domainLabelColor: const Color(0xFF999999),
         measureLabelFontSize: 12,
+        showMeasureLine: true,
         domainLabelPaddingToAxisLine: 6,
         measureAxisTitleInPadding: 14,
         measureAxisTitleColor: const Color(0xFF999999),
         measureLabelColor: const Color(0xFF999999),
+        showBarValue: true,
+        barValueFontSize: 14,
+        barValue: (barData, index) => index == 0
+            ? '${barData['measure']} %'
+            : index == 1
+                ? '${barData['measure']} %'
+                : index == 2
+                    ? '${barData['measure']} Qtd.'
+                    : '${barData['measure']} Qtd.',
+        barValuePosition: BarValuePosition.outside,
       ),
     );
   }
