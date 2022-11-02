@@ -186,33 +186,43 @@ class _AnalisysPageState extends State<AnalisysPage> {
                           itemBuilder: (BuildContext context, int index) {
                             final item = analysis.totalResults[index];
                             if (index % 2 == 0) {
-                              return CardListItemWidget(
-                                  selectChartValues: () =>
-                                      analysis.selectChartValues(index),
-                                  signalIcon: item.signalIcon,
-                                  signalIconColor: item.signalIconColor,
-                                  time: item.time,
-                                  symbol: item.symbol,
-                                  callAmount: item.callAmount,
-                                  putAmount: item.putAmount,
-                                  callPercent: item.callPercent,
-                                  putPercent: item.putPercent,
-                                  bgColor: const Color(0xFFBEBBA2),
-                                  fgColor: Colors.white);
+                              if (item.callPercent >= analysis.profitPercent ||
+                                  item.putPercent >= analysis.profitPercent) {
+                                return CardListItemWidget(
+                                    selectChartValues: () =>
+                                        analysis.selectChartValues(index),
+                                    signalIcon: item.signalIcon,
+                                    signalIconColor: item.signalIconColor,
+                                    time: item.time,
+                                    symbol: item.symbol,
+                                    callAmount: item.callAmount,
+                                    putAmount: item.putAmount,
+                                    callPercent: item.callPercent,
+                                    putPercent: item.putPercent,
+                                    bgColor: const Color(0xFFBEBBA2),
+                                    fgColor: Colors.white);
+                              } else {
+                                return const SizedBox.shrink();
+                              }
                             } else {
-                              return CardListItemWidget(
-                                  selectChartValues: () =>
-                                      analysis.selectChartValues(index),
-                                  signalIcon: item.signalIcon,
-                                  signalIconColor: item.signalIconColor,
-                                  time: item.time,
-                                  symbol: item.symbol,
-                                  callAmount: item.callAmount,
-                                  putAmount: item.putAmount,
-                                  callPercent: item.callPercent,
-                                  putPercent: item.putPercent,
-                                  bgColor: const Color(0xFFEFEFEF),
-                                  fgColor: const Color(0xFFBEBBA2));
+                              if (item.callPercent >= analysis.profitPercent ||
+                                  item.putPercent >= analysis.profitPercent) {
+                                return CardListItemWidget(
+                                    selectChartValues: () =>
+                                        analysis.selectChartValues(index),
+                                    signalIcon: item.signalIcon,
+                                    signalIconColor: item.signalIconColor,
+                                    time: item.time,
+                                    symbol: item.symbol,
+                                    callAmount: item.callAmount,
+                                    putAmount: item.putAmount,
+                                    callPercent: item.callPercent,
+                                    putPercent: item.putPercent,
+                                    bgColor: const Color(0xFFEFEFEF),
+                                    fgColor: const Color(0xFFBEBBA2));
+                              } else {
+                                return const SizedBox.shrink();
+                              }
                             }
                           }),
                     )

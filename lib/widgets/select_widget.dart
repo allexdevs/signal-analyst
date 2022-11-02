@@ -157,6 +157,7 @@ class _SelectWidgetState extends State<SelectWidget> {
                   child: ElevatedButton(
                     onPressed: widget.selectTime,
                     style: ButtonStyle(
+                        alignment: Alignment.centerLeft,
                         overlayColor: MaterialStateProperty.resolveWith(
                             (states) => const Color(0xFFDEDEDE)),
                         shape: MaterialStateProperty.resolveWith((states) =>
