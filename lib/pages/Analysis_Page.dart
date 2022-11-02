@@ -138,7 +138,12 @@ class _AnalisysPageState extends State<AnalisysPage> {
                             fontWeight: FontWeight.bold),
                       ),
                     ),
-                    const BarChartWidget(),
+                    BarChartWidget(
+                      callAmount: analysis.callAmount,
+                      callPercent: analysis.callPercent,
+                      putAmount: analysis.putAmount,
+                      purPercent: analysis.putPercent,
+                    ),
                     Padding(
                       padding: const EdgeInsets.only(top: 20.0),
                       child: SizedBox(
@@ -181,29 +186,39 @@ class _AnalisysPageState extends State<AnalisysPage> {
                           itemBuilder: (BuildContext context, int index) {
                             final item = analysis.totalResults[index];
                             if (index % 2 == 0) {
-                              return CardListItemWidget(
-                                  signalIcon: item.signalIcon,
-                                  signalIconColor: item.signalIconColor,
-                                  time: item.time,
-                                  symbol: item.symbol,
-                                  callAmount: item.callAmount,
-                                  putAmount: item.putAmount,
-                                  callPercent: item.callPercent,
-                                  putPercent: item.putPercent,
-                                  bgColor: const Color(0xFFBEBBA2),
-                                  fgColor: Colors.white);
+                              return GestureDetector(
+                                onTap: () {
+                                  analysis.selectChartValues(index);
+                                },
+                                child: CardListItemWidget(
+                                    signalIcon: item.signalIcon,
+                                    signalIconColor: item.signalIconColor,
+                                    time: item.time,
+                                    symbol: item.symbol,
+                                    callAmount: item.callAmount,
+                                    putAmount: item.putAmount,
+                                    callPercent: item.callPercent,
+                                    putPercent: item.putPercent,
+                                    bgColor: const Color(0xFFBEBBA2),
+                                    fgColor: Colors.white),
+                              );
                             } else {
-                              return CardListItemWidget(
-                                  signalIcon: item.signalIcon,
-                                  signalIconColor: item.signalIconColor,
-                                  time: item.time,
-                                  symbol: item.symbol,
-                                  callAmount: item.callAmount,
-                                  putAmount: item.putAmount,
-                                  callPercent: item.callPercent,
-                                  putPercent: item.putPercent,
-                                  bgColor: const Color(0xFFEFEFEF),
-                                  fgColor: const Color(0xFFBEBBA2));
+                              return GestureDetector(
+                                onTap: () {
+                                  analysis.selectChartValues(index);
+                                },
+                                child: CardListItemWidget(
+                                    signalIcon: item.signalIcon,
+                                    signalIconColor: item.signalIconColor,
+                                    time: item.time,
+                                    symbol: item.symbol,
+                                    callAmount: item.callAmount,
+                                    putAmount: item.putAmount,
+                                    callPercent: item.callPercent,
+                                    putPercent: item.putPercent,
+                                    bgColor: const Color(0xFFEFEFEF),
+                                    fgColor: const Color(0xFFBEBBA2)),
+                              );
                             }
                           }),
                     )

@@ -4,7 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:d_chart/d_chart.dart';
 
 class BarChartWidget extends StatelessWidget {
-  const BarChartWidget({super.key});
+  const BarChartWidget(
+      {super.key,
+      required this.callPercent,
+      required this.purPercent,
+      required this.callAmount,
+      required this.putAmount});
+
+  final double callPercent;
+  final double purPercent;
+  final int callAmount;
+  final int putAmount;
 
   @override
   Widget build(BuildContext context) {
@@ -12,14 +22,14 @@ class BarChartWidget extends StatelessWidget {
       width: 349,
       height: 150,
       child: DChartBar(
-        data: const [
+        data: [
           {
             'id': 'Bar',
             'data': [
-              {'domain': '% Call', 'measure': 69},
-              {'domain': '% Put', 'measure': 30},
-              {'domain': 'Call', 'measure': 9},
-              {'domain': 'Put', 'measure': 4},
+              {'domain': '% Call', 'measure': callPercent},
+              {'domain': '% Put', 'measure': purPercent},
+              {'domain': 'Call', 'measure': callAmount},
+              {'domain': 'Put', 'measure': putAmount},
             ]
           },
         ],
