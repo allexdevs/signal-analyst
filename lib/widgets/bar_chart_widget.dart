@@ -60,7 +60,8 @@ class BarChartWidget extends StatelessWidget {
         measureAxisTitleColor: const Color(0xFF999999),
         measureLabelColor: const Color(0xFF999999),
         showBarValue: true,
-        barValueFontSize: 14,
+        barValueFontSize: 10,
+        barValueColor: const Color(0xFF999999),
         barValue: (barData, index) => index == 0
             ? '${barData['measure']} %'
             : index == 1

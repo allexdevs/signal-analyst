@@ -150,21 +150,28 @@ class _AnalisysPageState extends State<AnalisysPage> {
                         height: 210,
                         width: 349,
                         child: ListView.builder(
-                          itemCount: 5,
+                          itemCount: analysis.details.length,
                           itemBuilder: (BuildContext context, int index) {
+                            final item = analysis.details[index];
                             if (index % 2 == 0) {
-                              return const DetailsListItemWidget(
-                                letfIcon: FontAwesomeIcons.circleArrowUp,
-                                bgColor: Color(0xFFBEBBA2),
+                              return DetailsListItemWidget(
+                                date: item.date,
+                                time: item.time,
+                                dayOfWeek: '',
+                                letfIcon: item.signal,
+                                bgColor: const Color(0xFFBEBBA2),
                                 fgColor: Colors.white,
-                                iconColor: Color(0xFF1DBE0F),
+                                iconColor: item.signalColor,
                               );
                             } else {
-                              return const DetailsListItemWidget(
-                                letfIcon: FontAwesomeIcons.circleArrowDown,
-                                bgColor: Color(0xFFEFEFEF),
-                                fgColor: Color(0xFFBEBBA2),
-                                iconColor: Color(0xFFC34848),
+                              return DetailsListItemWidget(
+                                date: item.date,
+                                time: item.time,
+                                dayOfWeek: '',
+                                letfIcon: item.signal,
+                                bgColor: const Color(0xFFEFEFEF),
+                                fgColor: const Color(0xFFBEBBA2),
+                                iconColor: item.signalColor,
                               );
                             }
                           },
@@ -189,8 +196,10 @@ class _AnalisysPageState extends State<AnalisysPage> {
                               if (item.callPercent >= analysis.profitPercent ||
                                   item.putPercent >= analysis.profitPercent) {
                                 return CardListItemWidget(
-                                    selectChartValues: () =>
-                                        analysis.selectChartValues(index),
+                                    selectChartValues: () => {
+                                          analysis.selectChartValues(index),
+                                          analysis.selectDetailsValues(index),
+                                        },
                                     signalIcon: item.signalIcon,
                                     signalIconColor: item.signalIconColor,
                                     time: item.time,
@@ -208,8 +217,10 @@ class _AnalisysPageState extends State<AnalisysPage> {
                               if (item.callPercent >= analysis.profitPercent ||
                                   item.putPercent >= analysis.profitPercent) {
                                 return CardListItemWidget(
-                                    selectChartValues: () =>
-                                        analysis.selectChartValues(index),
+                                    selectChartValues: () => {
+                                          analysis.selectChartValues(index),
+                                          analysis.selectDetailsValues(index),
+                                        },
                                     signalIcon: item.signalIcon,
                                     signalIconColor: item.signalIconColor,
                                     time: item.time,

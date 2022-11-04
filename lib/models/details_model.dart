@@ -7,6 +7,8 @@ class DetailsModel {
   final String time;
   final String dayOfWeek;
   final IconData signal;
+  final Color signalColor;
 
-  DetailsModel(this.date, this.time, this.dayOfWeek, this.signal);
+  DetailsModel(
+      this.date, this.time, this.dayOfWeek, this.signal, this.signalColor);
 }

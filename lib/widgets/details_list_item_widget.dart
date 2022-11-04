@@ -9,12 +9,18 @@ class DetailsListItemWidget extends StatelessWidget {
       required this.letfIcon,
       required this.bgColor,
       required this.fgColor,
-      required this.iconColor});
+      required this.iconColor,
+      required this.date,
+      required this.time,
+      required this.dayOfWeek});
 
   final IconData letfIcon;
   final Color bgColor;
   final Color fgColor;
   final Color iconColor;
+  final String date;
+  final String time;
+  final String dayOfWeek;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +46,7 @@ class DetailsListItemWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Text(
-                "00/00/0000",
+                date,
                 style: TextStyle(
                     fontFamily: "Poppins Regular",
                     fontWeight: FontWeight.w600,
@@ -48,7 +54,7 @@ class DetailsListItemWidget extends StatelessWidget {
                     color: fgColor),
               ),
               Text(
-                "00:00:00",
+                time,
                 style: TextStyle(
                     fontFamily: "Poppins Regular",
                     fontWeight: FontWeight.w600,
@@ -59,7 +65,7 @@ class DetailsListItemWidget extends StatelessWidget {
           )),
           trailing: Padding(
             padding: const EdgeInsets.only(left: 26.0),
-            child: Text("Friday",
+            child: Text(dayOfWeek,
                 style: TextStyle(
                     fontFamily: "Poppins Regular",
                     fontWeight: FontWeight.w600,
